@@ -1,4 +1,4 @@
-package com.example.gmailclone
+package com.example.gmailclone.components.model
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AllInbox
@@ -23,81 +23,98 @@ sealed class DrawerMenuData(
     val icon: ImageVector? = null,
     val title: String? = null,
     val isDivider: Boolean = false,
-    val isHeader: Boolean = false
+    val isHeader: Boolean = false,
 ) {
-    object AllInBoxes: DrawerMenuData(
+    object AllInBoxes : DrawerMenuData(
         icon = Icons.Outlined.AllInbox,
         title = "All inboxes"
     )
-    object Primary: DrawerMenuData(
+
+    object Primary : DrawerMenuData(
         icon = Icons.Outlined.Inbox,
         title = "Inbox"
     )
-    object Social: DrawerMenuData(
+
+    object Social : DrawerMenuData(
         icon = Icons.Outlined.Person,
         title = "Social"
     )
-    object Promotions: DrawerMenuData(
+
+    object Promotions : DrawerMenuData(
         icon = Icons.Outlined.Tag,
         title = "Promotions"
     )
-    object Starred: DrawerMenuData(
+
+    object Starred : DrawerMenuData(
         icon = Icons.Outlined.StarOutline,
         title = "Starred"
     )
-    object Snoozed: DrawerMenuData(
+
+    object Snoozed : DrawerMenuData(
         icon = Icons.Outlined.Snooze,
         title = "Snooze"
     )
-    object Important: DrawerMenuData(
+
+    object Important : DrawerMenuData(
         icon = Icons.Outlined.Label,
         title = "Important"
     )
-    object Sent: DrawerMenuData(
+
+    object Sent : DrawerMenuData(
         icon = Icons.Outlined.Send,
         title = "Sent"
     )
-    object Schedule: DrawerMenuData(
+
+    object Schedule : DrawerMenuData(
         icon = Icons.Outlined.Schedule,
         title = "Schedule"
     )
-    object Outbox: DrawerMenuData(
+
+    object Outbox : DrawerMenuData(
         icon = Icons.Outlined.Outbox,
         title = "Outbox"
     )
-    object Draft: DrawerMenuData(
+
+    object Draft : DrawerMenuData(
         icon = Icons.Outlined.Drafts,
         title = "Drafts"
     )
-    object AllMail: DrawerMenuData(
+
+    object AllMail : DrawerMenuData(
         icon = Icons.Outlined.Mail,
         title = "Mail"
     )
-    object Calendar: DrawerMenuData(
+
+    object Calendar : DrawerMenuData(
         icon = Icons.Outlined.CalendarToday,
         title = "Calendar"
     )
-    object Contacts: DrawerMenuData(
+
+    object Contacts : DrawerMenuData(
         icon = Icons.Outlined.Contacts,
         title = "Contacts"
     )
-    object Setting: DrawerMenuData(
+
+    object Setting : DrawerMenuData(
         icon = Icons.Outlined.Settings,
         title = "Settings"
     )
-    object Help: DrawerMenuData(
+
+    object Help : DrawerMenuData(
         icon = Icons.Outlined.Help,
         title = "Help & Feedback"
     )
 
-    object Divider: DrawerMenuData(
+    object Divider : DrawerMenuData(
         isDivider = true
     )
-    object HeaderOne: DrawerMenuData(
+
+    object HeaderOne : DrawerMenuData(
         isHeader = true,
         title = "ALL LABELS"
     )
-    object HeaderTwo: DrawerMenuData(
+
+    object HeaderTwo : DrawerMenuData(
         isHeader = true,
         title = "GOOGLE APPS"
     )
