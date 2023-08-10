@@ -1,8 +1,17 @@
 package com.example.gmailclone.components
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Divider
 import androidx.compose.material.Text
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -12,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.example.gmailclone.DrawerMenuData
 
 @Composable
-fun GmailDrawerHeader() {
+fun GmailDrawerHeader(scrollState: ScrollState) {
 
     val menuList = listOf(
         DrawerMenuData.Divider,
@@ -36,9 +45,10 @@ fun GmailDrawerHeader() {
         DrawerMenuData.Setting,
         DrawerMenuData.Help,
 
-    )
+        )
 
-    Column {
+
+    Column(modifier = Modifier.verticalScroll(scrollState)) {
         Text(
             color = Color.Red,
             text = "Gmail",
@@ -46,5 +56,44 @@ fun GmailDrawerHeader() {
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
+
+        menuList.forEach { item ->
+
+            when {
+                item.isDivider -> {
+                    Divider(modifier = Modifier.padding(bottom = 20.dp, top = 20.dp))
+                }
+
+                item.isHeader -> {
+                    Text(
+                        text = item.title!!,
+                        fontWeight = FontWeight.Light,
+                        modifier = Modifier.padding(start = 20.dp, bottom = 20.dp, top = 20.dp)
+                    )
+                }
+
+                else -> {
+                    GmailDrawerBody(item = item)
+                }
+            }
+
+        }
+    }
+}
+
+@Composable
+fun GmailDrawerBody(item: DrawerMenuData) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)
+            .padding(16.dp)
+    ) {
+        Image(
+            imageVector = item.icon!!,
+            contentDescription = item.title!!,
+            modifier = Modifier.weight(0.5f)
+        )
+        Text(text = item.title!!, modifier = Modifier.weight(2.0f))
     }
 }
