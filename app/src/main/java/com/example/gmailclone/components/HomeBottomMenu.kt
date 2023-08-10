@@ -6,7 +6,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import com.example.gmailclone.components.model.BottomMenuData
+import com.example.gmailclone.model.BottomMenuData
 
 @Composable
 fun HomeBottomMenu() {
