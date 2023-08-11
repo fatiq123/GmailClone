@@ -27,6 +27,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,15 +43,26 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.gmailclone.R
 
-@Composable
+/*@Composable
 fun AccountsDialog(openDialog: MutableState<Boolean>) {
     Dialog(onDismissRequest = { openDialog.value = false }) {
         AccountsDialogUI()
     }
+}*/
+@Composable
+fun AccountsDialog(openDialog: MutableState<Boolean>) {
+    Dialog(onDismissRequest = { openDialog.value = false }) {
+        AccountsDialogUI(openDialog)
+    }
 }
 
-@Composable
+/*@Composable
 fun AccountsDialogUI(modifier: Modifier = Modifier) {
+
+    var isDialogOpen by remember {
+        mutableStateOf(true)
+    } // State variable to track dialog open/close
+
     Card(colors = CardDefaults.cardColors(contentColor = Color.Gray)) {
         Column(
             modifier = modifier
@@ -58,7 +73,7 @@ fun AccountsDialogUI(modifier: Modifier = Modifier) {
                 modifier = modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { isDialogOpen = false }) {
                     Icon(imageVector = Icons.Default.Close, contentDescription = "")
                 }
                 Image(
@@ -118,6 +133,90 @@ fun AccountsDialogUI(modifier: Modifier = Modifier) {
             }
 
             Divider(modifier.padding(top = 16.dp))
+        }
+    }
+}*/
+
+
+@Composable
+fun AccountsDialogUI(openDialog: MutableState<Boolean>, modifier: Modifier = Modifier) {
+    if (openDialog.value) {
+        Card(
+            colors = CardDefaults.cardColors(contentColor = Color.Gray),
+            elevation = CardDefaults.cardElevation(10.dp)
+        ) {
+            Column(
+                modifier = modifier
+                    .background(Color.White)
+                    .padding(bottom = 16.dp)
+            ) {
+                Row(
+                    modifier = modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(onClick = { openDialog.value = false }) {
+                        Icon(imageVector = Icons.Default.Close, contentDescription = "")
+                    }
+                    Image(
+                        painter = painterResource(id = R.drawable.google),   // Replace with your image resource
+                        contentDescription = "",
+                        modifier = modifier
+                            .size(80.dp)
+                            .weight(2.0f)
+                    )
+                }
+
+                // Rest of your dialog content
+                // ... (keep the same code you provided for the rest of the dialog)
+                Row(
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .padding(start = 16.dp, top = 16.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.mypic),
+                        contentDescription = "Profile",
+                        modifier
+                            .size(40.dp)
+                            .clip(CircleShape)
+                            .background(color = Color.Gray)
+                    )
+                    Column(
+                        modifier
+                            .weight(2.0f)
+                            .padding(start = 16.dp, bottom = 10.dp)
+                    ) {
+                        Text(
+                            text = "Fatiq Hussnain",
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 18.sp
+                        )
+                        Text(text = "fatiqhussnain1@gmail.com", fontSize = 14.sp)
+                    }
+                    Text(text = "99+", modifier = modifier.padding(end = 16.dp))
+                }
+
+                Row(modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+                    Card(
+                        modifier.requiredWidth(150.dp),
+                        shape = RoundedCornerShape(50.dp),
+                        border = BorderStroke(1.dp, color = Color.Gray)
+                    ) {
+                        Text(
+                            text = "Google Account",
+                            modifier
+                                .padding(bottom = 10.dp, top = 8.dp, start = 8.dp, end = 8.dp)
+                                .fillMaxWidth()
+                                .height(25.dp),
+                            textAlign = TextAlign.Center,
+                            fontSize = 18.sp
+                        )
+                    }
+                    Spacer(modifier.width(10.dp))
+                }
+
+                Divider(modifier.padding(top = 16.dp))
+            }
         }
     }
 }
