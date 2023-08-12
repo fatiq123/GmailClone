@@ -13,7 +13,7 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
+import androidx.compose.material.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -60,7 +60,7 @@ fun GmailApp() {
         mutableStateOf(false)
     }
 
-    androidx.compose.material.Scaffold(
+    Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(title = {
@@ -77,7 +77,9 @@ fun GmailApp() {
         bottomBar = {
             HomeBottomMenu()
         },
-        floatingActionButton = { GmailFab(scrollState) }
+        floatingActionButton = {
+            GmailFab(scrollState)
+        }
     ) {
         MailList(paddingValues = it, scrollState = scrollState)
     }
