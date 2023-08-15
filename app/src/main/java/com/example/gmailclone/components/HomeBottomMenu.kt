@@ -1,5 +1,6 @@
 package com.example.gmailclone.components
 
+import android.widget.Toast
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -17,7 +18,12 @@ fun HomeBottomMenu() {
 
     BottomNavigation(backgroundColor = Color.White, contentColor = Color.Black) {
         items.forEach {
-            BottomNavigationItem(selected = false, onClick = { /*TODO*/ }, icon = {
+            BottomNavigationItem(selected = false, onClick = {
+                Toast.makeText(
+                    this@BottomNavigation,
+                    "You Select $it",
+                    Toast.LENGTH_SHORT
+                ).show() }, icon = {
                 Icon(
                     imageVector = it.icon,
                     contentDescription = it.title
