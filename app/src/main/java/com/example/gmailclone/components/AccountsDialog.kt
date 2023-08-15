@@ -169,6 +169,7 @@ fun AccountsDialogUI(openDialog: MutableState<Boolean>, modifier: Modifier = Mod
                     )
                 }
 
+
                 // Rest of your dialog content
                 // ... (keep the same code you provided for the rest of the dialog)
                 Row(
